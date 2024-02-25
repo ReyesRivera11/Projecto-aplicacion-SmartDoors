@@ -21,7 +21,7 @@ const Welcome = () => {
             <Text style={styes.textRegistrar}>Registrar</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styes.btnLogin}>
-            <Text>Registrar</Text>
+            <Text style={{textAlign:"center"}}>Login</Text>
           </TouchableOpacity>
         </View>
 

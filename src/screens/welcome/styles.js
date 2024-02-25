@@ -48,12 +48,14 @@ export const styes = StyleSheet.create({
         borderWidth:3,
         borderRadius:100,
         borderColor:"#0D259D",
-        padding:15
+        padding:15,
+        width:100
     },
     btnRegistrar:{
         backgroundColor:"#0D259D",
         padding:15,
         borderRadius:100,
+        width:100
     },
     textRegistrar:{
         color:"white",

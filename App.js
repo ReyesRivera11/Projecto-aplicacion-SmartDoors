@@ -10,9 +10,9 @@ export default function App() {
     <View style={styles.container}>
       <StatusBar style="auto" />
       {/* <Main/>  */}
-      {/* <Welcome/> */}
+      <Welcome/>
       {/* <Home/> */}
-      <Login/>
+      {/* <Login/> */}
     </View>
   );
 }
