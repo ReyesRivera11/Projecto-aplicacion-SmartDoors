@@ -29,7 +29,6 @@ export const styles = StyleSheet.create({
         alignItems:"center",
         left:12,
         top:-2,
-        
     },
     textContador:{
         fontSize:10,
@@ -50,9 +49,10 @@ export const styles = StyleSheet.create({
     },
     containerProducts:{
         marginTop:20,
-        alignItems:"center",
+        // alignItems:"center",
         flexDirection:"row",
         gap:5,
         justifyContent:"center",
+        flex:1
     }
 });

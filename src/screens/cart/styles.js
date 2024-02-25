@@ -1,0 +1,50 @@
+import { StyleSheet } from "react-native";
+export const styles = StyleSheet.create({
+    container:{
+        flex: 1,
+        paddingTop:50,
+        paddingHorizontal:10
+    },
+    containerTop:{
+        flexDirection:"row"
+    },
+    containerTextTop:{
+        width:"80%",
+        justifyContent:"center",
+        alignItems:"center"
+    },
+    textCart:{
+        fontWeight:"bold",
+        fontSize:18
+    },
+    containerProducts:{
+        marginTop:40,
+        flex:1
+    },
+    containerTotal:{
+        padding:10,
+        backgroundColor:"#efeeee",
+        borderTopLeftRadius:50,
+        borderTopRightRadius:50,
+    },
+    containerAmount:{
+        flexDirection:"row",
+        padding:10,
+        justifyContent:"space-between",
+        borderBottomWidth:1,
+        borderBottomColor:"#D7D6D6",
+    },
+    buttonPay:{
+        backgroundColor:"#0D259D",
+        padding:15,
+        borderRadius:20,
+        marginTop:50
+    },
+    textPay:{
+        textAlign:"center",
+        color:"white",
+        fontWeight:"200",
+        fontSize:20
+    },
+    
+});

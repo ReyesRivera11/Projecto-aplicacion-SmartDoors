@@ -5,7 +5,8 @@ export const styles = StyleSheet.create({
         borderRadius: 10,
         backgroundColor:"#efeeee",
         padding:10,
-        width:"49%"
+        width:"49%",
+        height:300
     },
     img:{   
         width:150,

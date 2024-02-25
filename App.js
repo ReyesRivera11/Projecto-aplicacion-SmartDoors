@@ -5,6 +5,9 @@ import Welcome from './src/screens/welcome';
 import Home from './src/screens/home';
 import Login from './src/screens/login';
 import SignUp from './src/screens/signup';
+import Cart from './src/screens/cart';
+import Access from './src/screens/registerAccess';
+import Door from './src/screens/statedoor';
 
 export default function App() {
   return (
@@ -14,7 +17,10 @@ export default function App() {
       {/* <Welcome/> */}
       {/* <Home/> */}
       {/* <Login/> */}
-      <SignUp/> 
+      {/* <SignUp/>  */} 
+      {/* <Cart/> */}
+      {/* <Access/> */}
+      <Door/>
     </View>
   );
 }
