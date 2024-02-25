@@ -1,0 +1,58 @@
+import { StyleSheet } from "react-native";
+
+export const styles = StyleSheet.create({
+    container:{
+        flex:1,
+        paddingTop:50,
+        paddingHorizontal:20,
+    },
+    containerBar:{
+        flexDirection:"row",
+        justifyContent:"space-between",
+        alignItems:"center",
+    },
+    img:{
+        width:60,
+        height:60,
+        resizeMode:"contain",
+    },
+    containerCart:{
+        position:"relative"
+    },
+    containerContador:{
+        position:"absolute",
+        backgroundColor:"red",
+        borderRadius:100,
+        width:18,
+        height:18,
+        justifyContent:"center",
+        alignItems:"center",
+        left:12,
+        top:-2,
+        
+    },
+    textContador:{
+        fontSize:10,
+        color:"white",
+    },
+    inpContainer:{
+        flexDirection:"row",
+        backgroundColor:"#ECEFEE",
+        width:"90%",
+        padding:10,
+        borderRadius:100
+    },
+    containerSearch:{
+        flexDirection:"row",
+        alignItems:"center",
+        justifyContent:"space-between",
+        marginTop:20
+    },
+    containerProducts:{
+        marginTop:20,
+        alignItems:"center",
+        flexDirection:"row",
+        gap:5,
+        justifyContent:"center",
+    }
+});
