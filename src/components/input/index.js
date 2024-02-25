@@ -28,8 +28,9 @@ export const LabeledInput = ({ icon, label, value, onChangeText, placeholder,pas
           <TouchableOpacity onPress={()=>hanldePass()}>
             {
               flag 
-              ? <AntDesign name="eye" size={24} color="black" /> 
-              : <Entypo name="eye-with-line" size={24} color="black" />
+              ? <Entypo name="eye-with-line" size={24} color="black" />
+              : <AntDesign name="eye" size={24} color="black" /> 
+              
             }
          </TouchableOpacity>
         ): null
