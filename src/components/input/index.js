@@ -4,7 +4,7 @@ import { styles } from './styles';
 import { AntDesign } from '@expo/vector-icons';     
 import { Entypo } from '@expo/vector-icons';
 
-export const LabeledInput = ({ icon, label, value, onChangeText, placeholder,pass }) => {
+export const LabeledInput = ({ icon, label, value, onChangeText, placeholder,pass,type }) => {
   const [flag,setFlag] = useState(true);
   const hanldePass = () => {
     setFlag(!flag);
@@ -20,6 +20,7 @@ export const LabeledInput = ({ icon, label, value, onChangeText, placeholder,pas
           value={value}
           style={styles.input}
           secureTextEntry={pass && flag ? true: false}
+          keyboardType={type}
         />
       </View>
       {
