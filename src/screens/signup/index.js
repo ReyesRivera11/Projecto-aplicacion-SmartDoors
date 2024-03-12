@@ -6,6 +6,8 @@ import { LabeledInput } from '../../components/input';
 import { Fontisto  } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+
 
 const SignUp = () => {
     const [email,setEmail] = useState("");
@@ -14,10 +16,18 @@ const SignUp = () => {
     const [nombre,setNombre] = useState("");
     const [apellido,setApellido] = useState("");
     const [telefono,setTelefono] = useState("");
+    const navigation = useNavigation();
+    const handleBack = () =>{
+      navigation.goBack();
+    };
+    
+  const hanldeLogin = () =>{
+    navigation.navigate('Login');
+  };
   return (
     <ScrollView style={styles.container}>
       <View style={styles.containerTop}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>handleBack()}>
             <AntDesign name="arrowleft" size={28} color="black"/>
         </TouchableOpacity>
       </View>
@@ -87,7 +97,9 @@ const SignUp = () => {
         </View>
         <View style={styles.containerBottom}>
             <Text>Ya tienes una cuenta?</Text>
-            <Pressable>
+            <Pressable
+              onPress={()=>hanldeLogin()}
+            >
                 <Text style={{color:"#0D259D"}}>Login</Text>
             </Pressable>
         </View>

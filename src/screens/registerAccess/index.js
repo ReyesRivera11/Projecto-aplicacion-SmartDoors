@@ -1,7 +1,6 @@
 import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { styles } from './styles'
-import NavBar from '../../components/NavBar'
 import { LabeledInput } from '../../components/input'
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
@@ -61,7 +60,6 @@ const Access = () => {
             <Text style={styles.textGuardar}>Guardar</Text>
         </TouchableOpacity>
      </View> 
-      {/* <NavBar/> */}
     </View>
   )
 }

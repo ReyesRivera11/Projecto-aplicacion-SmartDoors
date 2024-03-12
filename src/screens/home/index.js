@@ -1,21 +1,28 @@
-import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native'
-import { styles } from './Styles'
-import { FontAwesome } from '@expo/vector-icons';   
+import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
+import { styles } from './Styles';
 import { AntDesign } from '@expo/vector-icons';
 import ProductCard from '../../components/productCard/ProductCard';
-import NavBar from '../../components/NavBar';
+import { useNavigation } from '@react-navigation/native';
 const Home = () => {
+  const navigation = useNavigation();
+  const handleLogin = () => {
+    navigation.navigate('Login');
+  };
   return (
     <View style={styles.container}>
-
      <View style={styles.containerBar}>
         <Image style={styles.img} source={require("../../../assets/logo.png")}/>
-        <View style={styles.containerCart}>
+        <TouchableOpacity
+          onPress={()=>handleLogin()}
+        >
+          <AntDesign name="login" size={24} color="#0D259D" />
+        </TouchableOpacity>
+        {/* <View style={styles.containerCart}>
             <FontAwesome name="shopping-cart" size={30} color="#0D259D" />
             <View style={styles.containerContador}>
                 <Text style={styles.textContador}>9+</Text> 
             </View>
-        </View>
+        </View> */}
      </View>
 
      <View style={styles.containerSearch}>
@@ -32,7 +39,6 @@ const Home = () => {
         <ProductCard/> 
         <ProductCard/> 
      </View>
-     <NavBar/> 
 
     </View>
   )

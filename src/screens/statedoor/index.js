@@ -4,7 +4,12 @@ import { styles } from './styles'
 import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 const Door = () => {
+  const navigation = useNavigation();
+  const handleRegisters = () => {
+    navigation.navigate("Users");
+  }
   return (
     <View style={styles.container}>
 
@@ -41,7 +46,9 @@ const Door = () => {
             </View>
           </View>
       </View>
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={()=>handleRegisters()}
+      >
         <Text style={{color:"#0D259D"}}>Ver mas accesos</Text>
       </TouchableOpacity>
     </View>

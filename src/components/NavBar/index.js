@@ -1,23 +1,50 @@
-import { View, Text, TouchableOpacity } from 'react-native'
-import { Feather } from '@expo/vector-icons';
-import { styles } from './styles';
-import { AntDesign } from '@expo/vector-icons'; 
+import Home from '../../screens/home';
+import Access from '../../screens/registerAccess';
+import Door from '../../screens/statedoor';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Entypo } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
+
+const Tab = createBottomTabNavigator();
+
 const NavBar = () => {
   return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.button}>
-         <Feather name="shopping-bag" size={24} color="#0D259D" />
-        <Text style={{color:"#0D259D"}}>Productos</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
-        <AntDesign name="shoppingcart" size={24} color="gray" />
-        <Text style={{color:"gray"}}>Carrito</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
-        <AntDesign name="profile" size={24} color="gray" />
-        <Text style={{color:"gray"}}>Perfil</Text>
-      </TouchableOpacity>
-    </View>
+    
+      <Tab.Navigator
+        sceneContainerStyle={
+          {
+            backgroundColor: "white",
+          }
+        } screenOptions={{ headerShown: false }}>
+        <Tab.Screen
+          name="Productos"
+          component={Home}
+          options={
+            {
+              tabBarIcon: ({ color, size }) =>
+                <Entypo name="shop" size={size} color={color} />
+            }
+          }
+        />
+        <Tab.Screen
+          name="Registrar"
+          component={Access}
+          options={{
+            tabBarIcon: ({ color, size }) =>
+              <AntDesign name="plussquareo" size={24} color={color} />
+          }}
+        />
+        <Tab.Screen
+          name="Puerta"
+          component={Door}
+          options={{
+            tabBarIcon: ({ color, size }) =>
+              <FontAwesome5 name="door-closed" size={size} color={color} />
+          }}
+        />
+      </Tab.Navigator>
+   
   )
 }
 
