@@ -4,7 +4,8 @@ export const styles = StyleSheet.create({
     container:{
         flex:1,
         // alignItems: 'center',
-        marginTop:50,
+        paddingTop:50,
+        backgroundColor:"white"
     },
     imgContainer:{
         justifyContent:"center",
@@ -56,6 +57,10 @@ export const styles = StyleSheet.create({
         width:"100%",
         justifyContent:"center",
         gap:10,
+    },
+    errorMessage:{
+        textAlign:"center",
+        color:"red"
     }
     
 });

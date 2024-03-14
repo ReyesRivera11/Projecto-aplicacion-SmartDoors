@@ -1,22 +1,75 @@
-import { View, Text, Image, TouchableOpacity, SafeAreaView, TextInput, Pressable } from 'react-native'
+import { View, Text, Image, TouchableOpacity, Pressable } from 'react-native'
 import { styles } from './styles'
 import { AntDesign } from '@expo/vector-icons';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { LabeledInput } from '../../components/input';
 import { Fontisto  } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { loginRes } from '../../api/auth';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useAuth } from '../../contexto/auth';
 
 const Login = () => {
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
+    const [error,setError] = useState(false);
+    const [errorMessage,setErrorMessage] = useState("");
+    const {autenticado,setAutenticado,setUsuario} = useAuth();
     const navigation = useNavigation();
+
     const handleBack = () =>{
       navigation.goBack();
     };
     const hanldeSignUp = () =>{
       navigation.navigate('Signup');
     };
+    const handleLogin = async() => {
+      try {
+        const data = {
+          correo:email,
+          password
+        }
+        const res = await loginRes(data);
+        if(res){
+          const dataString = JSON.stringify(res.data);
+          AsyncStorage.setItem('usuario',dataString)
+          .then(()=>console.log("Dato guardado"))
+          .catch(e=>console.log(e))
+           setAutenticado(true);
+           setUsuario(dataString);
+           navigation.navigate('NavBar');
+           setEmail("");
+           setPassword("");
+        }
+      } catch (error) {
+        setError(true);
+        setErrorMessage(error.response.data.message);
+        console.log(error.response.data.message);
+      }
+    }
+    if(error){
+      setTimeout(() => {
+        setError(false);
+        setErrorMessage("");
+      }, 5000);
+    }
+    
+    // useEffect(()=>{
+    //   AsyncStorage.getItem('usuario')
+    //   .then(storedDataString => {
+    //     // Convierte la cadena a su formato original
+    //     const storedData = JSON.parse(storedDataString);    
+    //     if(storedData){
+    //       const usuario = storedData.data;
+    //       if(usuario)navigation.navigate('NavBar');
+    //       console.log("usuario borrado" + usuario)
+    //     }
+    //   })
+    //   .catch(error => {
+    //     console.error('Error al recuperar datos:', error);
+    //   });
+    // },[])
   return (
     <View style={styles.container}>
       <View style={styles.containerTop}>
@@ -29,6 +82,13 @@ const Login = () => {
       </View>
       <View style={styles.containerForm}>
         <Text style={styles.textTop}>Iniciar Sesion</Text>
+        {
+          error&&(
+            <Text style={styles.errorMessage}>
+              {errorMessage}
+            </Text>
+          )
+        }
         <LabeledInput
             icon={<Fontisto name="email" size={24} color="black" />}
             label="Email"
@@ -47,7 +107,12 @@ const Login = () => {
         />
         <View style={styles.containerButton}>
             <TouchableOpacity style={styles.button}>
-                <Text style={styles.btnText}>INICIAR</Text>
+                <Text 
+                  style={styles.btnText}
+                  onPress={()=>handleLogin()}
+                >
+                  INICIAR
+                </Text>
             </TouchableOpacity>
         </View>
         <View style={styles.containerBottom}>

@@ -2,9 +2,13 @@ import { View, Text, Image, TouchableOpacity } from 'react-native'
 import { styes } from './styles'
 import Animated, { FadeInDown, FadeInRight, FadeInLeft, FadeInUp, BounceIn } from "react-native-reanimated";
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useEffect } from 'react';
+import { useAuth } from '../../contexto/auth';
 
 const Welcome = () => {
   const navigation = useNavigation();
+  const {autenticado} = useAuth();
 
   const hanldeLogin = () =>{
     navigation.navigate('Login');
@@ -15,6 +19,10 @@ const Welcome = () => {
   const handleOmitir = () =>{
     navigation.navigate('NavBar');
   };
+  
+  useEffect(()=>{
+    if(autenticado) return navigation.navigate('NavBar');
+  },[])
   return (
     <View style={styes.container}>
       <Animated.View

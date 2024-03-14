@@ -1,11 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 
+import { StyleSheet, Text, View } from 'react-native';
 import MyStackNavigator from './src/components/MyStackNavigator';
+
+import { AuthProvider } from './src/contexto/auth';
 
 export default function App() {
   return (
-    <MyStackNavigator/>
+    <AuthProvider>
+      <MyStackNavigator/>
+    </AuthProvider>
   );
 }
 

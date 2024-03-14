@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity, Pressable, ScrollView } from 'react-native'
+import { View, Text, Image, TouchableOpacity, Pressable, ScrollView, Alert } from 'react-native'
 import { styles } from './styles'
 import { AntDesign } from '@expo/vector-icons';
 import { useState } from 'react';
@@ -7,6 +7,7 @@ import { Fontisto  } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { registrar } from '../../api/auth';
 
 
 const SignUp = () => {
@@ -15,7 +16,9 @@ const SignUp = () => {
     const [confirmPassword,setConfirmPassword] = useState("");
     const [nombre,setNombre] = useState("");
     const [apellido,setApellido] = useState("");
-    const [telefono,setTelefono] = useState("");
+    const [error,setError] = useState(false);
+    const [errorMessage,setErrorMessage] = useState("");
+
     const navigation = useNavigation();
     const handleBack = () =>{
       navigation.goBack();
@@ -24,6 +27,42 @@ const SignUp = () => {
   const hanldeLogin = () =>{
     navigation.navigate('Login');
   };
+  const handleRegister = async() =>{
+    try {
+      const data = {
+        nombre,
+        apellido,
+        correo:email,
+        password
+      }
+      if(password !== confirmPassword){
+        setError(true);
+        setErrorMessage("Las contraseñas no coinciden");
+      }else{
+        const res = await registrar(data);
+        if(res){
+          Alert.alert("Usuario registrado correctamente.");
+          navigation.navigate('Login');
+          setNombre("");
+          setApellido("");
+          setConfirmPassword("");
+          setPassword("");
+          setEmail("");
+        }
+      }
+      
+    } catch (error) {
+      setError(true);
+      // console.log(error.response.data.message);
+      setErrorMessage(error.response.data.message);
+    }
+  };
+  if(error){
+    setTimeout(() => {
+      setError(false);
+      setErrorMessage("");
+    }, 5000);
+  }
   return (
     <ScrollView style={styles.container}>
       <View style={styles.containerTop}>
@@ -36,6 +75,11 @@ const SignUp = () => {
       </View>
       <View style={styles.containerForm}>
         <Text style={styles.textTop}>Crea una cuenta</Text>
+        {
+          error&&(
+            <Text style={styles.errorMessage}>{errorMessage}</Text>
+          )
+        }
         <LabeledInput
             icon={<AntDesign name="user" size={24} color="black" />}
             label="Nombre"
@@ -54,15 +98,7 @@ const SignUp = () => {
             flag={false}
             type="default"
         />
-        <LabeledInput
-            icon={<Feather name="phone" size={24} color="black" />}
-            label="Telefono"
-            value={telefono}
-            onChangeText={(text) => setTelefono(text)}
-            placeholder="Telefono"
-            flag={false}
-            type="number-pad"
-        />
+        
         <LabeledInput
             icon={<Fontisto name="email" size={24} color="black" />}
             label="Email"
@@ -91,7 +127,7 @@ const SignUp = () => {
             // type="default"
         />
         <View style={styles.containerButton}>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={()=>handleRegister()}>
                 <Text style={styles.btnText}>REGISTRAR</Text>
             </TouchableOpacity>
         </View>
